@@ -11,3 +11,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: update and install
       run: composer install
+      if: success()
+    - name: test
+      run: |
+        bin/phpunit tests/Unit
+        bin/phpunit tests/Integration
+        php vendor/bin/behat
